@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shuffle String</title>
+        <style>
+            .string {
+                background-color: #777;
+                color: #fff;
+                font-family: monospace;
+                width: 400px;
+                margin: auto;
+                padding: 15px;
+                border-radius: 5px;
+            }
+            .string h1 {
+                text-align: center;
+            }
+            .string div {
+                margin: 10px 0;
+            }
+            .string div span {
+                font-size: 18px;
+                font-weight: bold;
+            }
+            .old-string,
+            .new-string {
+                color: #00b0ff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="string">
+            <h1>shuffle String Function</h1>
+            <div>
+                <span>Old string:</span>
+                <span class="old-string"></span>
+            </div>
+            <div>
+                <span>New string:</span>
+                <span class="new-string"></span>
+            </div>
+        </div>
+
+        <script>
+            // Function to random number
+            function randomNumber(lengthOfString) {
+                // Range start by zero
+                let start = 0;
+
+                // Return result of random number between [0, Length of string name minus 1]
+                return Math.floor(Math.random() * lengthOfString);
+            }
+
+            // Function to check if number is already exists or not
+            function checking(checkNumber, randomNum) {
+                
+                // By default true, new random number
+                let check = true;
+
+                // To check each number if already exists
+                for(let i = 0; i < checkNumber.length; i++) {
+
+                    if(randomNum === checkNumber[i]) {
+
+                        check = false;
+
+                        break;
+
+                    }
+
+                }
+
+                // Return true if the number didn't generator
+                // Return false if the number is already generated
+                return check;
+
+            }
+
+            function shuffle_name(str) {
+
+                let i = 0; // Count from 0
+
+                let checkNumber = []; // To push numbers after shuffle
+
+                let lengthOfString = str.length; // Length of strig name
+
+                let string = ""; // To push new string randomly
+
+                // To add new string
+                while(i < lengthOfString) {
+                    // Call function to get a new random number
+                    let randomNum = randomNumber(lengthOfString);
+                    
+                    // Call function to check number after shuffle and compare it with the array of random numbers
+                    let checkNum = checking(checkNumber, randomNum);
+                    
+                    // If the number not already exists that means it's a new random number
+                    if(checkNum === true) {
+
+                        // Put the number into string variable
+                        string += str[randomNum];
+
+                        // Push it to the array
+                        checkNumber.push(randomNum)
+
+                        // Add 1 to i while loop
+                        i++;
+
+                    }
+
+                }
+
+                // Return a new string after shuffle
+                return string;
+
+            }
+
+            let str = "naif";
+
+            document.querySelector(".old-string").innerHTML = str;
+            document.querySelector(".new-string").innerHTML = shuffle_name(str);
+        </script>
+    </body>
+</html>
