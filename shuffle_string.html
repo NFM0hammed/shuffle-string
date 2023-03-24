@@ -47,11 +47,10 @@
         <script>
             // Function to random number
             function randomNumber(lengthOfString) {
-                // Range start by zero
-                let start = 0;
-
+                
                 // Return result of random number between [0, Length of string name minus 1]
                 return Math.floor(Math.random() * lengthOfString);
+                
             }
 
             // Function to check if number is already exists or not
@@ -79,7 +78,7 @@
 
             }
 
-            function shuffle_name(str) {
+            function shuffle_string(str) {
 
                 let i = 0; // Count from 0
 
@@ -117,11 +116,47 @@
                 return string;
 
             }
+            
+            /*
+                ==================================================
+                => Another function to shuffle string <=
+                ==================================================
+                
+                    function shuffle_string(str) {
+
+                    // Length of string
+                    let string = str.length,
+                        temp, // Temporary value
+                        randomNum, // Get random number
+                        spiltString = str.split(""); // Convert string to array to swap the values
+
+                    for(let i = 0; i < string; i++) {
+
+                        // Call function to get a new random number
+                        randomNum = randomNumber(string);
+
+                        // Put the value of the array on the temporary variable [from 0 to the last value]
+                        tmp = spiltString[i];
+
+                        // Put the random number on array[i]
+                        spiltString[i] = spiltString[randomNum];
+
+                        // Put the temporary number on array[random]
+                        spiltString[randomNum] = tmp;
+
+                    }
+
+                    // Convert the array to string and return it
+                    return spiltString.join("");
+
+                }
+                
+            */
 
             let str = "naif";
 
             document.querySelector(".old-string").innerHTML = str;
-            document.querySelector(".new-string").innerHTML = shuffle_name(str);
+            document.querySelector(".new-string").innerHTML = shuffle_string(str);
         </script>
     </body>
 </html>
